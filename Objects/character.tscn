@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4qosry2dsoe6"]
+[gd_scene load_steps=6 format=3 uid="uid://c4qosry2dsoe6"]
 
 [ext_resource type="Script" path="res://Scripts/character.gd" id="1_cmp6a"]
 
@@ -10,8 +10,6 @@ albedo_color = Color(0.32549, 1, 1, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flcdr"]
 
 [sub_resource type="PrismMesh" id="PrismMesh_5rmxi"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m2ice"]
 
 [node name="Character" type="CharacterBody3D"]
 collision_mask = 3
@@ -38,14 +36,25 @@ mesh = SubResource("PrismMesh_5rmxi")
 transform = Transform3D(-0.000619601, 0.249999, 1.09278e-08, 0, -1.09278e-08, 0.25, 0.249999, 0.000619601, 2.70835e-11, 0.787876, 0, -0.1208)
 mesh = SubResource("PrismMesh_5rmxi")
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
-position = Vector2(63, 378)
-scale = Vector2(0.144531, 0.138672)
-texture_normal = SubResource("NoiseTexture2D_m2ice")
-
-[node name="Label" type="Label" parent="."]
-offset_right = 316.0
-offset_bottom = 23.0
+[node name="lblVida" type="Label" parent="."]
+offset_right = 77.0
+offset_bottom = 26.0
 text = "Vida: 5"
 
-[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]
+[node name="lblPontos" type="Label" parent="."]
+offset_left = 1074.0
+offset_right = 1151.0
+offset_bottom = 26.0
+text = "Pontos: 0"
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = -1
+anchor_right = 0.137
+anchor_bottom = 0.45
+offset_left = 23.0
+offset_top = 402.0
+offset_right = -47.824
+offset_bottom = 192.4
+text = "Pular"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -43,18 +43,22 @@ func _unhandled_input(event):
 func take_damage(dano):
 	current_hp = current_hp - 1
 	print(current_hp)
-	$Label.text = "Vida: " + str(current_hp)
+	$lblVida.text = "Vida: " + str(current_hp)
 	if current_hp <= 0:
 		die()
 	
 func collect_coin():
 	coins_collected += 1
 	print(coins_collected)	
+	$lblPontos.text = "Pontos: " + str(coins_collected)
 
 func die():
 	get_tree().reload_current_scene()
 
 
-func _on_touch_screen_button_pressed():
-	print("pressed")
+
+func _on_button_pressed():
+	if is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		move_and_slide()
 	pass # Replace with function body.
