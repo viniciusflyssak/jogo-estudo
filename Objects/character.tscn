@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4qosry2dsoe6"]
+
+[ext_resource type="Script" path="res://Scripts/character.gd" id="1_cmp6a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_4s7pu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e3q54"]
+albedo_color = Color(0.32549, 1, 1, 1)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_flcdr"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_5rmxi"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_m2ice"]
+
+[node name="Character" type="CharacterBody3D"]
+collision_mask = 3
+script = ExtResource("1_cmp6a")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_4s7pu")
+surface_material_override/0 = SubResource("StandardMaterial3D_e3q54")
+
+[node name="Camera3D" type="Camera3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 0.960084, 0.279712, 0, -0.279712, 0.960084, 0, 1.80971, 1.89114)
+
+[node name="RayCast3D" type="RayCast3D" parent="Body/Camera3D"]
+transform = Transform3D(-0.000619601, 0.249999, 1.09278e-08, -0.0699277, -0.00017332, 0.240021, 0.24002, 0.000594866, 0.069928, 0.787876, -1.17471, -2.43783)
+
+[node name="Collision" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_flcdr")
+
+[node name="Arm" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.0287299, -0.248344, -1.08555e-08, 1.20316e-18, -1.09278e-08, 0.25, -0.248344, -0.0287299, -1.25583e-09, -0.73626, 0.226692, 0.110922)
+mesh = SubResource("PrismMesh_5rmxi")
+
+[node name="Arm2" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.000619601, 0.249999, 1.09278e-08, 0, -1.09278e-08, 0.25, 0.249999, 0.000619601, 2.70835e-11, 0.787876, 0, -0.1208)
+mesh = SubResource("PrismMesh_5rmxi")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(63, 378)
+scale = Vector2(0.144531, 0.138672)
+texture_normal = SubResource("NoiseTexture2D_m2ice")
+
+[node name="Label" type="Label" parent="."]
+offset_right = 316.0
+offset_bottom = 23.0
+text = "Vida: 5"
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://cona5hm6wv3fj"]
+
+[ext_resource type="PackedScene" uid="uid://la47mb5vknku" path="res://Models/crate.glb" id="1_j7y5m"]
+[ext_resource type="Script" path="res://Scripts/crate.gd" id="2_mtumr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_txyfp"]
+size = Vector3(0.25, 0.25, 0.25)
+
+[node name="crate" instance=ExtResource("1_j7y5m")]
+script = ExtResource("2_mtumr")
+
+[node name="collision" type="CollisionShape3D" parent="." index="1"]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0.00193411, 0.248799, -0.00190803)
+shape = SubResource("BoxShape3D_txyfp")
